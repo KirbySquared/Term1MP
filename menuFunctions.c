@@ -37,8 +37,8 @@ void Firstmainmenu() //Function for the first main menu
 	Precondition: Executed as the program starts. If user inputs any number that is not 6, program will keep looping, if user inputs 1 - 5, 
 	program will call the functions and go back to this menu when user is done with that function. If user enters 6, program will go back to
 	first main menu.
-No parameter used
-No return since void
+	No parameter used
+	No return since void
 */
 void Secondmainmenu()
 {

@@ -9,15 +9,15 @@ int DecimalToBinary();
 /* 
 This function is where the menu 1 Guess the Pattern takes place, 
 in the very first input.
-Precondition: if the user enters 1 in the main menu, accepted inputs are integers only.
+Precondition: User inputs INTEGERS only.
 No parameters 
-No return since void
+No return since answers will be printed 
 */
 
 //MENU 1 GUESS THE PATTERN STARTS HERE
 void guessthepattern()
 {
-	int input1, input2, input3, input4; 
+	int input1, input2, input3, input4;
 	int nPattern1, nPattern2, nPattern3, nPatternFinal ,nResult;
 	int nBinPattern1, nBinPattern2, nBinPattern3;
 
@@ -40,11 +40,6 @@ void guessthepattern()
 	nPattern2 = input3 - input2; 
 	nPattern3 = input4 - input3;
 	
-	 /* For code debugging 
-	printf("\nPattern 1: %d", nPattern1);
-	printf("\nPattern 2: %d", nPattern2);
-	printf("\nPattern 3: %d", nPattern3); */
-	
 		if ( Primechecker(input1) == 1 && Primechecker(input2) == 1 && Primechecker(input3) == 1 && Primechecker(input4) == 1 )	//Checks if all inputs are prime
 			{
 				if ( (PrimeSequenceChecker(input1, input2) == 1) && ( (PrimeSequenceChecker(input2, input3) == 1) && PrimeSequenceChecker (input3, input4) == 1) )
@@ -59,11 +54,12 @@ void guessthepattern()
 					printf("\tReason/s: Prime Series");
 				}
 			}
-		if ( BinaryChecker(input1) == 1 && BinaryChecker(input2) == 1 && BinaryChecker(input3) == 1 && BinaryChecker(input4) == 1  ) 
+		if ( BinaryChecker(input1) == 1 && BinaryChecker(input2) == 1 && BinaryChecker(input3) == 1 && BinaryChecker(input4) == 1 && nAdvance != 1) 
 			{ //Binary Series, checks if all inputs are Binary
 				nBinPattern1 = BinaryToDecimal(input2) - BinaryToDecimal(input1);
 				nBinPattern2 = BinaryToDecimal(input3) - BinaryToDecimal(input2);
 				nBinPattern3 = BinaryToDecimal(input4) - BinaryToDecimal(input3);
+				
 				if (nBinPattern1 == nBinPattern2 && nBinPattern1 == nBinPattern3 && nBinPattern1 == 1)
 				{
 					nResult = 1 + BinaryToDecimal(input4);
@@ -71,11 +67,9 @@ void guessthepattern()
 					printf("\nAnswer: %d", nResult);	
 					printf("\tReason/s: Binary Series");
 				}
-				else if (input1 != 0 && input2 != 0 && input3 != 0 && input4 != 0)
+				else if (nBinPattern1 == nBinPattern2 && nBinPattern1 == nBinPattern3 && nBinPattern1 != 1)
 				{
-					nResult = 1;
-					printf("\nAnswer: ?");	
-					printf("\tReason/s: No relation!");
+					nResult = 0;
 				}
 			}
 		if ( nPattern1 == nPattern2 && nPattern1 == nPattern3 && nPattern1 == 2 ) // Increments of Odd and Even
@@ -128,7 +122,7 @@ void guessthepattern()
 				printf("\nAnswer: %d", nResult);	
 				printf("\tReason/s: Increments of %d", nPatternFinal);
 			}
-		 else if ( (nPattern1 != nPattern2 && nPattern1 != nPattern3 && nResult == 0) || (input1 == input2 && input1 == input3 && input1 == input4) )	
+		  else if ( (nPattern1 != nPattern2 && nPattern1 != nPattern3 && nResult == 0) || (input1 == input2 && input1 == input3 && input1 == input4) )	
 			{ 	 // For *N series, and if all inputs are 0
 				 if (input1 == 0 && input2 == 0 && input3 == 0 && input4 == 0)
 					{

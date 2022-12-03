@@ -8,9 +8,9 @@ Kurvy J. Morales, DLSU ID 12208038
 /* 
 Description: Main code file for the program
 Programmed by: Kurvy J. Morales S14B 
-Last modified: Nov.28,2022
-Version: 5.6
-[Acknowledgements: none so far]
+Last modified: Dec.3,2022
+Version: 6.0
+[Acknowledgements: https://pencilprogrammer.com/c-programs/convert-decimal-to-binary/ - FOR DECIMAL TO BINARY]
 */
 #include <stdio.h>
 #include "menuFunctions.c"

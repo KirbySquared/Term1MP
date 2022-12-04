@@ -10,7 +10,7 @@ Description: Main code file for the program
 Programmed by: Kurvy J. Morales S14B 
 Last modified: Dec.3,2022
 Version: 6.0
-[Acknowledgements: https://pencilprogrammer.com/c-programs/convert-decimal-to-binary/ - FOR DECIMAL TO BINARY]
+[Acknowledgements: ]
 */
 #include <stdio.h>
 #include "menuFunctions.c"

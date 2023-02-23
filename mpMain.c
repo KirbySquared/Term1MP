@@ -8,9 +8,9 @@ Kurvy J. Morales, DLSU ID 12208038
 /* 
 Description: Main code file for the program
 Programmed by: Kurvy J. Morales S14B 
-Last modified: Dec.3,2022
+Last modified: Dec.4,2022
 Version: 6.0
-[Acknowledgements: ]
+[Acknowledgements: https://www.livescience.com/37470-fibonacci-sequence.html]
 */
 #include <stdio.h>
 #include "menuFunctions.c"

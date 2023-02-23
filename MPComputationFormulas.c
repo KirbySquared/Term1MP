@@ -1,20 +1,29 @@
+/*
+Description: This file contains other functions and computations to be used in the Machine Project menus 1 and 2.
+Programmed by: Kurvy J. Morales S14B
+Last modified: Dec. 4, 2022
+Version: 3.0
+[Acknowledgements: <list of sites or borrowed libraries and sources>]
+*/
+
 #include <stdio.h>
-/*This file contains other functions to be used in the Machine Project*/
 int Primechecker();
 int BinaryToDecimal();
 int PrimeSequenceChecker();
 int BinaryToDecimal();
 int BinaryChecker();
 int DecimalToBinary();
+int FibonacciChecker();
+
 /* 
 This function is where the menu 1 Guess the Pattern takes place, 
 in the very first input.
 Precondition: User inputs INTEGERS only.
 No parameters 
-No return since answers will be printed 
+No return val since answers will be printed 
 */
 
-//MENU 1 GUESS THE PATTERN STARTS HERE
+//***************MENU 1 GUESS THE PATTERN STARTS HERE***************
 void guessthepattern()
 {
 	int input1, input2, input3, input4;
@@ -40,7 +49,8 @@ void guessthepattern()
 	nPattern2 = input3 - input2; 
 	nPattern3 = input4 - input3;
 	
-		if ( Primechecker(input1) == 1 && Primechecker(input2) == 1 && Primechecker(input3) == 1 && Primechecker(input4) == 1 )	//Checks if all inputs are prime
+		if ( Primechecker(input1) == 1 && Primechecker(input2) == 1 && Primechecker(input3) == 1 && Primechecker(input4) == 1 )	
+		//Checks if all inputs are prime
 			{
 				if ( (PrimeSequenceChecker(input1, input2) == 1) && ( (PrimeSequenceChecker(input2, input3) == 1) && PrimeSequenceChecker (input3, input4) == 1) )
 				{	//Checks if all prime inputs are sequential or not
@@ -54,20 +64,20 @@ void guessthepattern()
 					printf("\tReason/s: Prime Series");
 				}
 			}
-		if ( BinaryChecker(input1) == 1 && BinaryChecker(input2) == 1 && BinaryChecker(input3) == 1 && BinaryChecker(input4) == 1 && nAdvance != 1) 
+		if ( BinaryChecker(input1) == 1 && BinaryChecker(input2) == 1 && BinaryChecker(input3) == 1 && BinaryChecker(input4) == 1) 
 			{ //Binary Series, checks if all inputs are Binary
 				nBinPattern1 = BinaryToDecimal(input2) - BinaryToDecimal(input1);
 				nBinPattern2 = BinaryToDecimal(input3) - BinaryToDecimal(input2);
 				nBinPattern3 = BinaryToDecimal(input4) - BinaryToDecimal(input3);
 				
 				if (nBinPattern1 == nBinPattern2 && nBinPattern1 == nBinPattern3 && nBinPattern1 == 1)
-				{
+				{ //Checks if Binary has a pattern of +1
 					nResult = 1 + BinaryToDecimal(input4);
 					nResult = DecimalToBinary(nResult);
 					printf("\nAnswer: %d", nResult);	
 					printf("\tReason/s: Binary Series");
 				}
-				else if (nBinPattern1 == nBinPattern2 && nBinPattern1 == nBinPattern3 && nBinPattern1 != 1)
+				else 
 				{
 					nResult = 0;
 				}
@@ -144,7 +154,7 @@ void guessthepattern()
 							printf("\tReason/s: No relation!");
 						}	
 					}
-				else if (input1 == -999) //prints a new line since input1 enters in this condition
+				else if (input1 == -999) //prints a new line so main menu is printed properly since input1 enters in this condition
 					{
 						printf("\n");
 					}
@@ -179,7 +189,7 @@ void guessthepattern()
 					
 				  if (input1 != 0 && input2 != 0 && input3 != 0 && input4 != 0)
 				  {
-					if ( ( (input2 % input1) == (input3 % input2) ) && ( (input3 % input2) == (input4 % input3) ) )
+					if (  (input2 % input1) == (input3 % input2)  && (input3 % input2) == (input4 % input3)  )
 					{
 						if ( ( input2 == input1 * (input2/input1) ) && ( input3 == input2 * (input2/input1) ) && ( input4 == input3 * (input2/input1) ) ) 	
 						printf("\n\t\tReason/s: *%d sequence", input2 / input1);
@@ -195,7 +205,8 @@ void guessthepattern()
 				  if (input1 != 0 && input2 != 0 && input3 != 0 && input4 != 0)
 				   {
 					if ( ((input2 % input1) == (input3 % input2)) && ((input3 % input2) == (input4 % input3)) )
-					{	if ( ( input2 == input1 * (input2/input1) ) && ( input3 == input2 * (input2/input1) ) && ( input4 == input3 * (input2/input1) ) )
+					{	
+						if ( ( input2 == input1 * (input2/input1) ) && ( input3 == input2 * (input2/input1) ) && ( input4 == input3 * (input2/input1) ) )
 						printf("\n\t\tReason/s: *%d sequence", input2 / input1);
 				  	}
 				   }
@@ -237,16 +248,16 @@ void guessthepattern()
 	
 	}			
 }
-//MENU 1 GUESS THE PATTERN MAIN CODE ENDS HERE***************
+//***************MENU 1 GUESS THE PATTERN MAIN CODE ENDS HERE***************
 
-//MENU 2 INCREMENTS AND DECREMENTS START HERE****************
+//***************MENU 2 INCREMENTS AND DECREMENTS START HERE****************
 
 /* This function is used to compute and show decrements of N according to user input
-	Precondition: Decrement value is not negative or 0 and is an integer, and user picked 2nd option in the second menu.
-	N should be positive number, N represents the increments / decrements it will do.
-	X represents how many values to be generated, X should be greater than or equal to 2 else it will display error if X is not at 
-	least 2, else it will go back to second menu. 
-	Y represents first number in the series 
+Precondition: Decrement value is not negative or 0 and is an integer, and user picked 2nd option in the second menu.
+N should be positive number, N represents the increments / decrements it will do.
+X represents how many values to be generated, X should be greater than or equal to 2 else it will display error if X is not at 
+least 2, else it will go back to second menu. 
+Y represents first number in the series 
 No parameters used
 No return value since void
 */
@@ -285,17 +296,16 @@ void DecrementsN()
 }
 
 /* This function is used to compute and show increments of N according to user input
-	Precondition: Increment value is not negative or 0 and is an integer, and user picked 1st option in the second menu.
-	N should be positive number, N represents the increments / decrements it will do.
-	X represents how many values to be generated, X should be greater than or equal to 2 else it will display error if X is not at 
-	least 2 and N is not a positive number and will go back to second option menu. 
-	Y represents first number in the series 
+Precondition: Increment value is not negative or 0 and is an integer, and user picked 1st option in the second menu.
+N should be positive number, N represents the increments / decrements it will do.
+X represents how many values to be generated, X should be greater than or equal to 2 else it will display error if X is not at 
+least 2 and N is not a positive number and will go back to second option menu. 
+Y represents first number in the series 
 No parameters used
 No return value since void
 */
 void IncrementsN()
 {
-
 	int NIncrement, Xnumofvalues, Yfirstnumber;
 	printf("\n**********INCREMENTS OF N**********");
 	printf("\nEnter the value of N (3 = Increments of 3):\n");
@@ -329,10 +339,10 @@ void IncrementsN()
 }	
 
 /* This function is used to compute and show increments of even numbers by 2, and only accepts even numbers.
-	Precondition: User picked 3rd option in the second menu.
-	X represents how many values to be generated, X should be greater than or equal to 2 else it will display error if X is not at 
-	least 2 and goes back to second menu.
-	Y represents first number in the series and only accepts even numbers, if not even, program will end and go back to 2nd menu. 
+Precondition: User picked 3rd option in the second menu.
+X represents how many values to be generated, X should be greater than or equal to 2 else it will display error if X is not at 
+least 2 and goes back to second menu.
+Y represents first number in the series and only accepts EVEN numbers, if not even, program will end and go back to 2nd menu. 
 No parameters used
 No return value since void
 */
@@ -410,17 +420,17 @@ void IncrementOdd()
 				printf("\nERROR! INVALID INPUT.\n");
 			}
 }
-//MENU 2 INCREMENTS AND DECREMENTS END HERE****************
+//****************MENU 2 INCREMENTS AND DECREMENTS END HERE****************
 
-//MENU 2 PRIME SERIES STARTS HERE****************
+//****************MENU 2 PRIME SERIES STARTS HERE****************
 
 /* This function is used to compute and show prime numbers, and only accepts prime numbers.
 	Precondition: User picked 5th option in the second menu.
 	X represents how many values to be generated, X should be >= 2 else it will display error if X is not at 
 	least 2 and goes back to 2nd menu.
 	Y represents first number in the series and only accepts prime numbers, if not prime, program will go back to 2nd menu. 
-No parameters used
-No return value since void
+	No parameters used
+	No return value since void
 */
 void PrimeSeries()
 {
@@ -452,6 +462,7 @@ void PrimeSeries()
 								Yfirstnumber++;
 							}
 						}
+						printf("\n**********SERIES ENDS HERE**********\n");
 					}
 					else
 					{
@@ -463,9 +474,136 @@ void PrimeSeries()
 				printf("\nERROR! INVALID INPUT.\n");
 			}
 }
-//MENU 2 PRIME SERIES ENDS HERE****************
+//****************MENU 2 PRIME SERIES ENDS HERE****************
 
-//OTHER FUNCTIONS BEING USED IN THE PROGRAM
+/* This function is used to compute and show the fibonacci sequence, and only accepts positive numbers.
+	Precondition: User inputs positive values, and only inputs INTEGERS.
+	X represents how many values to be generated, X should be >= 2 else it will display error if X is not at 
+		least 2 and goes back to 2nd menu.
+	Y represents first number in the series and only accepts numbers that are a part of the fibonacci sequence, if it is not a part of the sequence,
+		the program will go back to 2nd menu. 
+	No parameters used
+	No return value since void
+*/
+//****************MENU 2 FIBONACCI SERIES STARTS HERE****************
+void FibonnaciSequence()
+{
+	int number1, number2, input1, input2, stop;
+	number1 = 0;
+	number2 = 1;
+
+	printf("\nEnter the value of X (How many numbers should be generated, Minimum of 2):\n");
+		scanf("%d", &input1);
+		
+		if (input1 < 2)
+		{
+			printf("\nERROR! INVALID INPUT.\n");
+		}
+		else
+		{	
+			
+			printf("\nEnter the value of Y (The starting number must be part of the Fibonnaci Sequence):\n");
+				scanf("%d", &input2);
+					
+			if ( FibonacciChecker (input2) == 1)
+			{ // Will only start printing if input2 == number1 in Fibonacci
+				
+				while ( stop != 1)
+				{
+					if (input2 == number1)
+					{
+						printf("%d ", number1);
+						input1--;
+						printf("%d ", number2);
+						input1--;
+						number1 += number2;
+						number2 += number1;
+						stop = 1;
+					}
+					else if (input2 == number2)
+					{
+						printf("%d ", number2);
+						input1--;
+						number1 += number2;
+						number2 += number1;
+						stop = 1;
+					}
+					else
+					{
+					number1 += number2;
+					number2 += number1;
+					}
+				}
+					
+
+				while (input1 > 0)
+				{
+					printf("%d ", number1); //0
+					input1--;
+					
+					if (input1 != 0)
+					{
+					printf("%d ", number2); //1
+					input1--;
+					}
+					
+					number1 += number2;
+					number2 += number1;
+					
+				}
+				printf("\n**********SERIES ENDS HERE**********\n");
+			}
+			else 
+			{
+			printf("\nERROR! INVALID INPUT.\n");
+			}
+		}
+}
+//****************MENU 2 FIBONACCI SERIES STARTS HERE****************
+
+//****************OTHER FUNCTIONS BEING USED IN THE PROGRAM****************
+/* This function checks if the number in the parameter is part of the Fibonacci Sequence or not.
+Precondition: Parameter value is positive and is an integer.
+@param numbercheck is the number that will be checked if it is part of the fibonacci sequence or not.
+@return 2 if the number is not part of the sequence, return 1 if the number is part of the sequence.
+*/
+int FibonacciChecker(int numbercheck)
+{
+	int number1, number2, number3, stopper;
+	number1 = 0;
+	number2 = 1;
+	number3 = 0;
+	stopper = 0;
+	
+	if (numbercheck < 0)
+	{
+	return 2;
+	}
+	else
+	{
+			while (stopper != 1 || number2 >= 0)
+		{				   
+			if (numbercheck == number1 || numbercheck == number2 || numbercheck == number3)
+			{
+				return 1;
+				stopper = 1; //Return 1 if number is part of fibonacci sequence, return 2 if number is not part of fibonacci sequence.
+			}
+			else if ( (numbercheck != number1 || numbercheck != number2 || numbercheck != number3) && (number1 > numbercheck || number2 > numbercheck || number3 > numbercheck) )
+			{
+				return 2;
+				stopper = 1;
+			}
+			else
+			{	
+				number3 = number1 + number2;
+				number1 = number3;
+				number2 += number1;
+			}
+		}
+	}
+	
+	return 2;
+}
 
 /* This function checks if the number in the parameter is prime or not.
 Precondition: Parameter value is positive and is an integer.
@@ -510,7 +648,7 @@ int Primechecker(int numbertobechecked)
 }
 
 /* This function checks if 2 prime numbers are sequential or not.
-Precondition: Parameter values are prime, and positive values only.
+Precondition: Parameter values are prime, and positive values only, values must be INTEGERS only.
 @param userinput1 is the first input to be compared, userinput2 is the second input to be compared.
 @return 0 If the 2 inputs are not sequential, return 1 if the 2 inputs are sequential.
 */
@@ -521,7 +659,7 @@ int PrimeSequenceChecker(int userinput1, int userinput2)
 	stopval = 1;
 	userinput1++;
 	// For Primechecker, if the value is 2, number is not prime; if value is 1, the number is prime.
-	// For sequence checking, value returned is 2 if the 2 numbers are not sequential, 1 if two numbers are sequentail.
+	// For sequence checking, value returned is 2 if the 2 numbers are not sequential, 1 if two numbers are sequential.
 		while (stopval != 0)
 		{ 
 			if ( Primechecker(userinput1) == 1 && userinput1 != userinput2 )
@@ -542,6 +680,11 @@ int PrimeSequenceChecker(int userinput1, int userinput2)
 		return 0;
 }
 
+/* This function checks if the number inputted is binary or not. 
+Precondition: Parameter are positive values only, values must be INTEGERS only.
+@param inputtoconvert is the integer input to check if it is binary
+@return 2 If the 2 inputs is not binary, return 1 if the input is binary.
+*/
 int BinaryChecker (int inputtoconvert)
 {
 	int remainder = 0;
@@ -567,9 +710,15 @@ int BinaryChecker (int inputtoconvert)
 			return valuecheck = 2;
 		}	
 	}
-	
+	return 0;
 }
 
+/* This function converts the inputted decimal into its binary equivalent.
+Precondition: Parameter inputs are positive only, and inputs must only be integers in decimal form, the binary output
+will display correctly until the integer limit is reached. 
+@param inputtoconvert is the integer to be converted into binary
+@return convertedbinary is the converted decimal into its binary equivalent.
+*/
 int DecimalToBinary (int inputtoconvert)
 {
 	int remainder, convertedbinary, counter;
@@ -588,6 +737,12 @@ int DecimalToBinary (int inputtoconvert)
 	return convertedbinary;
 }
 
+/* This function converts the inputted binary into its decimal equivalent.
+Precondition: Parameter inputs are positive only, and inputs must only be integers in binary form, the decimal output
+will display correctly until the integer limit is reached. 
+@param inputtoconvert is the integer to be converted into decimal
+@return converteddecimal is the converted binary into its decimal equivalent.
+*/
 int BinaryToDecimal (int inputtoconvert)
 {
 	int exponent = 0; 
